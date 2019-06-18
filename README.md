@@ -1,8 +1,8 @@
-# Visor 
+﻿# EMotel 
 
 ## Comenzando 🚀
 
-El proyecto Visor es un sistema Web que nos permite el mantenimiento de Categorías y de Productos. 
+El proyecto EMotel es un sistema Web que nos permite el mantenimiento de Restaurantes, Hoteles y de Reservas. 
 El código fuente del sistema ha sido desarrollado con el lenguaje de programación Java y sera usado para poder explicar como implementar un flujo de DevOps .
 
 Mira **Despliegue** para conocer como desplegar el proyecto.
@@ -28,9 +28,11 @@ Usamos [Git](https://git-scm.com/) para el versionado. Su uso es solo para fines
 
 ## Autores ✒️
 
-Por el momento yo soy el unico autor :D
+- Luis Alberto Ortiz Centeno
+- Alvaro Jesus Poma Sanchez
+- Rodrigo Max Lara Camarena
 
-* **Henry Antonio Mendoza Puerta** -  [hamp](www.linkedin.com/in/henrymendozapuerta)
+* **Rodrigo Max Lara Camarena** -  [Rodrigo Lara](www.linkedin.com/in/rodrigolara05)
 
 ### Pre-requisitos 📋
 

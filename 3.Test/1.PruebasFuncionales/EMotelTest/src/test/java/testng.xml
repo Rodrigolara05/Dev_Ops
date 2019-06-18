@@ -1,0 +1,24 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="EMotelTestSuite" parallel="false">
+	
+	<test name="MantenimientoHotelTest">
+		<classes>
+			<class name="com.codigo.test.system.testCase.MantenimientoHotel" />
+		</classes>
+	</test>
+	<test name="MantenimientoRestaurante">
+		<classes>
+			<class name="com.codigo.test.system.testCase.MantenimientoRestaurante" />
+		</classes>
+	</test>
+	<test name="MantenimientoReservaAdmin">
+		<classes>
+			<class name="com.codigo.test.system.testCase.MantenimientoReservaAdmin" />
+		</classes>
+	</test>
+	<test name="MantenimientoReservaUser">
+		<classes>
+			<class name="com.codigo.test.system.testCase.MantenimientoReservaUser" />
+		</classes>
+	</test>
+</suite> 

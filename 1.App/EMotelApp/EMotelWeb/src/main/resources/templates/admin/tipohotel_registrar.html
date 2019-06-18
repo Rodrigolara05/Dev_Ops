@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Registrar Tipo Hotel</title>
+    
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/css/dashboard.css" rel="stylesheet" />
+    
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div th:replace="fragments/admin/menu_superior :: menu_superior"></div>
+    </nav>
+    <div class="container-fluid">
+      <div class="row">
+        <div th:replace="fragments/admin/menu_lateral :: menu_lateral"></div>
+        
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <h1 class="page-header">Registrar Tipo Hotel</h1>
+
+          <form method="post" th:object="${tipohotel}" action="/admin/tipohotel/guardar" name ="formulario">
+          	<div class="form-group">
+              <label for="campo01">Nombre</label>
+              <input th:field="*{nombre}" type="text" class="form-control" id="campo01" placeholder="Texto" name="nombre"/>
+              <p class="text-danger" id = "nom"></p>
+            </div>
+            <div class="form-group">
+              <label for="campo02">Descripcion</label>
+              <input th:field="*{descripcion}" type="text" class="form-control" id="campo02" placeholder="Texto" name="descripcion"/>
+              <p class="text-danger" id = "desc"></p>
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+ <script>
+
+	(function(){
+
+		var vacio = "El elemento no puede estar vacio";
+		var form = document.getElementsByName("formulario")[0],
+		elementos = form.elements,
+		boton =  document.getElementById("boton");
+
+		var validarNombre = function(e){
+			if(form.nombre.value == 0){
+				document.getElementById("nom").innerHTML = vacio;
+				e.preventDefault();
+			}else{
+				document.getElementById("nom").innerHTML = "";
+			}
+		};
+		
+		var validarDescripcion = function(e){
+			if(form.descripcion.value == 0){
+				document.getElementById("desc").innerHTML = vacio;
+				e.preventDefault();
+			}else{
+				document.getElementById("desc").innerHTML = "";
+			}
+		};
+
+		
+		var validar = function(e){
+			validarNombre(e);
+			validarDescripcion(e);
+		};
+		
+		form.addEventListener("submit", validar);
+	}())
+
+ 	</script>
+  </body>
+</html>

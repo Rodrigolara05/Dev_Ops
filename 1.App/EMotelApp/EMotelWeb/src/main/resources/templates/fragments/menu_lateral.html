@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<div th:fragment="home_lateral" class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" 
+style="background-color:rgb(240,240,240); border-radius: 10px; padding: 20px; margin-top:30px; position: fixed; right: 35px;">
+
+		<ul class="nav nav-list" style="margin-top: 10px; border-radius: 10px;">
+            <li class="nav-header" style="background-color: #7D4427; color: white; border-radius: 10px; padding: 5px; font-size: 20px; ">Hotel</li>
+            <li style="color: #FF0000;"><a href="/hotel/listar/0">Listar</a></li>
+         </ul>
+          <ul class="nav nav-list" style="margin-top: 30px; border-radius: 10px; color: #FF0000;">
+            <li class="nav-header" style="background-color: #7D4427; color: white; border-radius: 10px; padding: 5px; font-size: 20px; ">Restaurante</li>
+            <li><a href="/restaurante/listar/0">Listar</a></li>
+          </ul>
+          <ul class="nav nav-list" style="margin-top: 30px; border-radius: 10px;">
+            <li class="nav-header" style="background-color: #7D4427; color: white; border-radius: 10px; padding: 5px; font-size: 20px; ">Reservas</li>
+            <li><a href="/reserva/listar">Listar</a></li>
+            <li><a href="/reserva/registrar">Registrar reserva</a>
+          </ul>
+</div>
+</body>
+</html>

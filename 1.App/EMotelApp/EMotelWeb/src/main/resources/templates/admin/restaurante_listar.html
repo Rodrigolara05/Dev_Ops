@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Listar Restaurante</title>
+    
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/css/dashboard.css" rel="stylesheet" />
+
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div th:replace="fragments/admin/menu_superior :: menu_superior"></div>
+    </nav>
+    <div class="container-fluid">
+      <div class="row">
+        <div th:replace="fragments/admin/menu_lateral :: menu_lateral"></div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+         <h1 class="page-header" id="TituloRestauranteListar" >Listado de Restaurantes</h1>
+           <div th:if="${mensaje != null}" class="alert alert-success">
+          	<p th:text="${mensaje}"></p>
+          </div>   
+          <div th:if="${error != null}" class="alert alert-danger">
+          	<p th:text="${error}"></p>
+          </div>     
+			<table class="table">
+			<thead>
+				<tr>
+					<th>Nombre</th>
+					<th>Precio</th>
+					<th>Descripcion</th>
+					<th>Ubicacion</th>
+					<th>Distrito</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="restaurante : ${listado}">
+					<td th:text="${restaurante.nombre}"></td>
+					<td th:text="${restaurante.precio}"></td>
+					<td th:text="${restaurante.descripcion}"></td>
+					<td th:text="${restaurante.ubicacion}"></td>
+					<td th:text="${restaurante.distrito.nombre}"></td>
+					<td>
+						<a th:href="@{'/admin/restaurante/editar/' + ${restaurante.id}}">Editar</a> 
+						<a th:href="@{'/admin/restaurante/eliminar/' + ${restaurante.id}}">Eliminar</a>
+					</td>
+				</tr>
+			</tbody>
+			</table>
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>

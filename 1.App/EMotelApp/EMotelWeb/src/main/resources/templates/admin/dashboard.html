@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Inicio del Administrador</title>
+    
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/css/dashboard.css" rel="stylesheet" />
+    
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div th:replace="fragments/admin/menu_superior :: menu_superior"></div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div th:replace="fragments/admin/menu_lateral :: menu_lateral" id="Nav"></div>
+        
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <h1 class="page-header">Bienvenido administrador!</h1>
+          <div class="hero-unit">
+            <p> Aqui usted como Administrador puede realizar creacion o listado de lo que desee </p>
+          </div>
+         
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>

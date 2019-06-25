@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	
+	
+	<link rel="stylesheet" type="text/css" href="css/uno.css">
+	<link rel="stylesheet" type="text/css" href="css/dos.css">
+	
+	<link href="/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/css/dashboard.css" rel="stylesheet" />
+    
+</head>
+<body>
+	<nav class="navbar navbar-fixed-top navbar-inverse">
+      <div class="container text-left">
+        <div>
+          <a class="navbar-brand text-left" href="/">EMotel</a>
+		  <a class="navbar-brand" href="/login">Iniciar Sesion</a>
+		  <a class="navbar-brand" href="/usuario/registrar">Registrarse</a>
+        </div>
+        
+      </div>
+    </nav>
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<form name = "formulario" class="login100-form validate-form p-l-55 p-r-55 p-t-178 col-12" th:object="${administrador}" action="/usuario/guardar" method="post">
+					<span class="login100-form-title">
+						Registrarse
+					</span>
+					<div style="position: relative; margin-left: 20px; margin-right: 10px; vertical-align: top;">
+						<div style="width: 48%; display:inline-block;">
+							<h4 style="padding: 10px;color: lightgreen;">Nombre</h4>
+							<div class="wrap-input100 validate-input m-b-16" data-validate="Ingresar nombre">
+								<input th:field="*{nombre}" class="input100" type="text" name="nombre" placeholder="Nombre">
+								 <p class="text-danger" id = "nom"></p>
+							</div>
+							
+							<h4 style="padding: 10px;padding-top:20px;color: lightgreen;">Apellido</h4>
+							<div class="wrap-input100 validate-input m-b-16" data-validate="Ingresar apellido">
+								<input th:field="*{apellido}" class="input100" type="text" name="apellido" placeholder="Apellido">
+								<p class="text-danger" id = "ape"></p>
+							</div>
+							
+							<h4 style="padding: 10px;padding-top:20px;color: lightgreen;">Correo</h4>
+							<div class="wrap-input100 validate-input m-b-16" data-validate="Ingresar correo valido">
+								<input th:field="*{correo}" class="input100" type="text" name="correo" placeholder="example@domain.com">
+								<p class="text-danger" id = "cor"></p>
+							</div>
+						</div>
+						<div style="width: 48%; display:inline-block; margin-left: 20px; margin-right: 10px; vertical-align: top;">
+							<h4 style="padding: 10px;color: lightgreen;">Fecha de nacimiento</h4>
+							<div class="wrap-input100 validate-input m-b-16" data-validate="Ingresar fecha de nacimiento">
+								<input th:field="*{fecha}" type="date" class="input100" id="campo01" name = "fecha" />
+								<p class="text-danger" id = "fec"></p>
+							</div>
+							
+							<h4 style="padding: 10px;padding-top:20px;color: lightgreen;">Contraseña</h4>
+							<div class="wrap-input100 validate-input" data-validate = "Ingresar contraseña">
+								<input th:field="*{password}" class="input100" type="password" name="contra" placeholder="*********">
+								<p class="text-danger" id = "cont"></p>
+							</div>
+		
+							<br/>
+							<br/>
+							<br/>
+							<br/>
+							<div class="container-login100-form-btn">
+								<button class="login100-form-btn" type="submit">
+									Enviar
+								</button>
+							</div>
+						</div>
+					</div>
+				</form>
+				
+			</div>
+		</div>
+	</div>
+	
+	<script type="text/javascript">
+
+	(function(){
+		var vacio = "El elemento no puede estar vacio";
+		var form = document.getElementsByName("formulario")[0],
+		elementos = form.elements,
+		boton =  document.getElementById("boton");
+
+		var validarNombre = function(e){
+			if(form.nombre.value == 0){
+				document.getElementById("nom").innerHTML = vacio;
+				e.preventDefault();
+			}else{
+				document.getElementById("nom").innerHTML = "";
+			}
+		};
+
+		var validarApellido = function(e){
+			if(form.apellido.value == 0){
+				document.getElementById("ape").innerHTML = vacio;
+				e.preventDefault();
+			}else{
+				document.getElementById("ape").innerHTML = "";
+			}
+		};
+
+		var validarCorreo = function(e){
+			if(form.correo.value == 0){
+				document.getElementById("cor").innerHTML = vacio;
+				e.preventDefault();
+			}else{
+				document.getElementById("cor").innerHTML = "";
+			}
+		};
+		
+		var validarFecha = function(e){
+			if(form.fecha.value == 0){
+				document.getElementById("fec").innerHTML = vacio;
+				e.preventDefault();
+			}else{
+				document.getElementById("fec").innerHTML = "";
+			}
+		};
+
+		var validarContra = function(e){
+			if(form.contra.value == 0){
+				document.getElementById("cont").innerHTML = vacio;
+				e.preventDefault();
+			}else{
+				document.getElementById("cont").innerHTML = "";
+			}
+		};
+		
+		var validar = function(e){
+			validarNombre(e);
+			validarApellido(e);
+			validarCorreo(e);
+			validarFecha(e);
+			validarContra(e);
+		};
+
+		form.addEventListener("submit", validar); 
+		
+	}())
+
+	</script>
+</body>
+</html>

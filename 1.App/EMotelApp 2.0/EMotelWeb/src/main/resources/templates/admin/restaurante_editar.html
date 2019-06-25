@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Registrar Restaurante</title>
+    
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/css/dashboard.css" rel="stylesheet" />
+    
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div th:replace="fragments/admin/menu_superior :: menu_superior"></div>
+    </nav>
+    <div class="container-fluid">
+      <div class="row">
+        <div th:replace="fragments/admin/menu_lateral :: menu_lateral"></div>
+        
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <h1 class="page-header" id="TituloRestauranteEditar" >Editar Restaurante</h1>
+
+          <form method="post" th:object="${restaurante}" action="/admin/restaurante/guardar" name="formulario">
+            <input type="hidden"  th:field="*{id}">
+          	<div class="form-group">
+              <label>Nombre</label>
+              <input id="RestauranteNombre" th:field="*{nombre}" type="text" class="form-control" placeholder="nombre" name="nombre" />
+              <p class="text-danger" id = "nom"></p>
+            </div>
+            <div class="form-group">
+              <label>Precio</label>
+              <input id="RestaurantePrecio" th:field="*{precio}" type="number" class="form-control" step="any" name="precio"/ min=0.00>
+              <p class="text-danger" id = "pre"></p>
+            </div>
+            <div class="form-group">
+              <label>Descripcion</label>
+              <input id="RestauranteDescripcion" th:field="*{descripcion}" type="text" class="form-control" placeholder="descripcion" name="descripcion"/>
+              <p class="text-danger" id = "desc"></p>
+            </div>
+            <div class="form-group">
+              <label>Ubicacion</label>
+              <input id="RestauranteUbicacion" th:field="*{ubicacion}" type="text" class="form-control" placeholder="ubicacion" name="ubicacion"/>
+              <p class="text-danger" id = "ubica"></p>
+            </div>
+            <div class="form-group">
+              <label>Distrito</label>
+              <select id="RestauranteDistrito" th:field="*{distrito}" class="form-control" name="distrito">
+              	<option th:each="d : ${listado}" th:value="${d.id}" th:text="${d.nombre}" ></option>
+              </select>
+              <p class="text-danger" id = "dist"></p>
+            </div>
+            <button type="submit" class="btn btn-default" id="GuardarRestaurante">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+ 	<script>
+
+	(function(){
+
+		var vacio = "El elemento no puede estar vacio";
+		var cantidad = "El elemento debe ser mayor a 1.00";
+		var nulo = "Debes seleccionar una opcion";
+		var form = document.getElementsByName("formulario")[0],
+		elementos = form.elements,
+		boton =  document.getElementById("boton");
+
+		var validarNombre = function(e){
+			if(form.nombre.value == 0){
+				document.getElementById("nom").innerHTML = vacio;
+				e.preventDefault();
+			}else{
+				document.getElementById("nom").innerHTML = "";
+			}
+		};
+
+		var validarPrecio = function(e){
+			if(form.precio.value < 1){
+				document.getElementById("pre").innerHTML = cantidad;
+				e.preventDefault();
+			}else{
+				document.getElementById("pre").innerHTML = "";
+			}
+		};
+
+		var validarDescripcion = function(e){
+			if(form.descripcion.value == 0){
+				document.getElementById("desc").innerHTML = vacio;
+				e.preventDefault();
+			}else{
+				document.getElementById("desc").innerHTML = "";
+			}
+		};
+
+		var validarUbicacion = function(e){
+			if(form.ubicacion.value == 0){
+				document.getElementById("ubica").innerHTML=vacio;
+				e.preventDefault();
+			}else{
+				document.getElementById("ubica").innerHTML="";
+			}
+		};
+
+		var validarDistrito = function(e){
+			if(form.distrito.SELECT == false){
+				document.getElementById("dist").innerHTML = nulo;
+				e.preventDefault();
+			}else{
+				document.getElementById("dist").innerHTML = "";
+			}
+		};
+		var validar = function(e){
+			validarNombre(e);
+			validarPrecio(e);
+			validarDescripcion(e);
+			validarUbicacion(e);
+			validarDistrito(e);
+		};
+		
+		form.addEventListener("submit", validar);
+	}())
+
+ 	</script>
+  </body>
+</html>

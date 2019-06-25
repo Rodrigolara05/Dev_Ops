@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Registrar Reservas</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/css/dashboard.css" rel="stylesheet" />
+    <link href="/css/offcanvas.css" rel="stylesheet" />
+  </head>
+
+
+<body onload="setInterval('actualizarCostoHotel()',100);">
+    <nav class="navbar navbar-fixed-top navbar-inverse">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">EMotel</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+          <li class="active"><a href="/">Inicio</a></li>
+            <li><a href="/login">Iniciar Sesion</a></li>
+            <li><a href="/usuario/registrar">Registrarse</a></li>
+          </ul>
+        </div><!-- /.nav-collapse -->
+      </div><!-- /.container -->
+    </nav><!-- /.navbar -->
+
+    <div class="container">
+
+      <div class="row row-offcanvas row-offcanvas-right">
+
+        <div class="col-xs-12 col-sm-9">
+          <p class="pull-right visible-xs">
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
+          </p>
+          
+       <h1 class="page-header" id ="TituloReservaRegistrar" >Registrar Reserva</h1>
+
+
+          <form  method="post" th:object="${reserva}" action="/reserva/guardar">
+	          <div style="position: relative;">
+	            <div class="form-group">
+	              <label for="">Restaurante</label>
+	              <select th:field="*{restaurante}" class="form-control"  name ="restaurante" id="restaurante">
+	              <option value="" disabled="disabled" selected>seleccione un restaurante</option>
+	              	<option th:each="d : ${listado1}" th:value="${d.id}" th:text="${d.nombre} + ' ::: S/.'  + ${d.precio}" ></option>
+	              </select>
+	              <p class="text-danger" id = "rest"></p>
+	            </div>
+	            <div class="form-group">
+	              <label for="">Hotel</label>
+	              <select th:field="*{hotel}" class="form-control"  name ="hotel" id="hotel">
+	              	<option value="" disabled="disabled" selected>seleccione un hotel</option>
+	              	<option th:each="d : ${listado2}" th:value="${d.id}" th:text="${d.nombre} + ' ::: S/.'  + ${d.precio}"></option>
+	              </select>
+	              <p class="text-danger" id = "hot"></p>
+	            </div>
+	            <div class="form-group">
+	              <label for="">Administrador</label>
+	              <select th:field="*{administrador}" class="form-control" name="administrador" id="administrador">
+	              	<option th:each="d : ${listado3}" th:value="${d.id}" th:text="${d.nombre}" ></option>
+	              </select>
+	              <p class="text-danger" id = "admin"></p>
+	            </div>
+	            
+	             <div class="form-group">
+	            	<label for="">Fecha de reserva</label>
+	            	<br/>
+	            	<input th:field="*{fechareserva}" type="date" min="2019:03:30" value="2016-06-12" style="width: 100%;" class="form-control" id ="fecha" />
+	            	<p class="text-danger" id = "fec"></p>
+	            </div>
+	            
+	            <div class="form-group">
+	            	<label for="">Dias de reserva</label>
+	            	<br/>
+	            	<input th:field="*{diasreserva}" type="number" min=1 max =15 id="dias"  style="width: 100%;" class="form-control" name="dias"/>
+	            	<p class="text-danger" id = "dia"></p>
+	            </div>
+	            <div class="form-group" hidden="true">
+	            	<label for="">Costo total</label>
+	            	<br/>
+	            	<input th:field="*{costototal}" type="text" />
+	            </div>
+	            
+	            <div>
+		            <h3 style ="color: green; text-align: center;">Resumen de la reserva</h3>
+		            
+		            <div style="display: block;">
+			            <label style="display:inline-block;">Costo unitario del restaurante:</label>
+			            <p style="display:inline-block;" id="unirestaurante"></p>
+		            </div>
+		            
+		            <div>
+			            <label style="display:inline-block;">Costo unitario del hotel:</label>
+			            <p style="display:inline-block;" id="unihotel"></p>
+		            </div>
+		            
+		            <div>
+			            <label style="display: inline-block;">Costo total:</label>
+			            <p style="display:inline-block;" id="unitotal"></p>
+		            </div>
+	            </div>
+	            <button type="submit" class="btn btn-default" id="GuardarReserva">Registrar</button>
+            </div>
+
+          </form>
+          
+       
+        </div>
+  <div th:replace="fragments/menu_lateral :: home_lateral"></div>
+      </div>
+      <hr>
+      <footer>
+        <p>&copy; 2016 Company, Inc.</p>
+      </footer>
+
+      
+      
+    </div>
+
+    <script>
+		var h = document.getElementById("hotel");
+		var r = document.getElementById("restaurante");
+		var d = 1;
+		var selectedH, selectedR;
+		var index;
+		var ph, pr, pt;
+		
+		function obtenerPrecio(cadena){
+			var p = "";
+			for (var i = 0; i < cadena.length; i++) {
+				if (cadena[i]== 'S' && cadena[i+1]=='/' && cadena[i+2]=='.'){
+					index = i+3;
+					break;
+				}
+			}
+			for (var i = index; i < cadena.length; i++) {
+				p+=cadena[i];
+			}
+			return parseFloat(p);
+		}
+		function actualizarCostoHotel(){
+			d = document.getElementById("dias").value;
+			
+			selectedH = h.options[h.selectedIndex].text;
+			selectedR = r.options[r.selectedIndex].text;
+
+			ph = obtenerPrecio(selectedH);
+			pr = obtenerPrecio(selectedR);
+			pt = (ph + pr)*d;
+			
+			document.getElementById("unihotel").innerHTML = ph.toString();
+			document.getElementById("unirestaurante").innerHTML = pr.toString();
+			document.getElementById("unitotal").innerHTML = pt.toString();
+
+			
+		}
+    </script>
+    
+    
+    
+    <script type="text/javascript">
+		var x = Document().getElementById("res");
+		var y = Document().getElementById("hot");
+		var z = Document().getElementById("unihotel");
+		function ActulizarDatos(){
+				z.value =x.value;
+				z.innerHTML();
+			}
+		
+	</script>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src=js/jquery-3.2.1.min.js"><\/script>')</script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="offcanvas.js"></script>
+  </body>
+</html>

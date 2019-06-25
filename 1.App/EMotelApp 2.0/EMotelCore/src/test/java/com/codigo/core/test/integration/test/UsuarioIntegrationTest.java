@@ -28,8 +28,7 @@ public class UsuarioIntegrationTest {
 	private String apellido = "";
 	private String correo = "";
 	private String password = "";
-	private String fecha;
-	private Rol rol;
+	private Rol rol = new Rol();
 	@Mock
 	private HttpServletResponse response;
 
@@ -55,7 +54,7 @@ public class UsuarioIntegrationTest {
 	@When("^en la pantalla escribo en campo  Nombre el valor de \"([^\"]*)\"$")
 	public void en_la_pantalla_escribo_en_campo_Nombre_el_valor_de(String arg1) throws Throwable {
 		nombre = arg1;
-		admin.setNombre(correo);
+		admin.setNombre(nombre);
 	}
 
 	@When("^en la pantalla escribo en campo  Apellido el valor de \"([^\"]*)\"$")
@@ -66,14 +65,12 @@ public class UsuarioIntegrationTest {
 
 	@When("^en la pantalla escribo en campo  Fecha el valor de \"([^\"]*)\"$")
 	public void en_la_pantalla_escribo_en_campo_Fecha_el_valor_de(String arg1) throws Throwable {
-		fecha = arg1;
 		Date date = new Date();
 		admin.setFecha(date);
 	}
 
 	@When("^en la pantalla escribo en campo  Rol el valor de \"([^\"]*)\"$")
 	public void en_la_pantalla_escribo_en_campo_Rol_el_valor_de(String arg1) throws Throwable {
-		rol.setNombre(arg1);
 		rol.setId(2);
 		admin.setRol(rol);
 	}
@@ -110,7 +107,7 @@ public class UsuarioIntegrationTest {
 	public void presiono_en_el_boton_de_Registrar() throws Throwable {
 		try {
 			adminServices.insertar(admin);
-			mensaje = "Inicio sesion";
+			mensaje = "USUARIO GUARDADO";
 		} catch (Exception e) {
 			e.printStackTrace();
 			Assert.fail("Error: " + e.getMessage());

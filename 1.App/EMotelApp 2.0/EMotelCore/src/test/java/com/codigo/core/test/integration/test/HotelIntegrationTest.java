@@ -13,11 +13,8 @@ import org.mockito.MockitoAnnotations;
 
 import com.codigo.core.entity.Distrito;
 import com.codigo.core.entity.Hotel;
-import com.codigo.core.entity.Provincia;
 import com.codigo.core.entity.TipoHotel;
-import com.codigo.core.service.DistritoServices;
 import com.codigo.core.service.HotelServices;
-import com.codigo.core.service.TipoHotelServices;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -26,11 +23,6 @@ import cucumber.api.java.en.When;
 public class HotelIntegrationTest {
 	
 	private final HotelServices hotelServices = new HotelServices();
-
-	private final TipoHotelServices tipoHotelServices = new TipoHotelServices();
-
-	private final DistritoServices distritoServices = new DistritoServices(); 
-
 	private static Hotel hotel = new Hotel();
 	private String mensaje = "";
 	private String nombreHotel = "";
@@ -38,7 +30,6 @@ public class HotelIntegrationTest {
 	private String direccionHotel = "";
 	private String nombreDistrito;
 	private String nombreTipoHotel;
-	private Provincia provincia;
 	private Distrito distrito = new Distrito();
 	private TipoHotel tipoHotel = new TipoHotel();
 	@Mock
@@ -79,7 +70,7 @@ public class HotelIntegrationTest {
 	public void busco_en_el_campo_Distrito_el_valor_de(String arg1) throws Throwable {
 		nombreDistrito = arg1;
 		distrito.setId(1);
-		
+		distrito.setNombre(nombreDistrito);
 		hotel.setDistritos(distrito);
 	}
 	
@@ -95,8 +86,9 @@ public class HotelIntegrationTest {
 	@When("^presiono en el boton de Registrar$")
 	public void presiono_en_el_boton_de_Registrar() throws Throwable {
 		try {
-			hotelServices.insertar(hotel);
-			mensaje = "Hotel guardado";
+			Boolean f = hotelServices.insertar(hotel);
+			Assert.assertTrue(f);
+			mensaje = "Hotel Guardado";
 		} catch (Exception e) {
 			e.printStackTrace();
 			Assert.fail("Error: " + e.getMessage());
@@ -119,7 +111,6 @@ public class HotelIntegrationTest {
 		try {
 			List<Hotel> lista = hotelServices.listar();
 			Assert.assertTrue(lista.size() > 0);
-			hotel = lista.get(0);
 			doNothing().when(response).sendRedirect("http://localhost/admin/hotel/listar.xhtml");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -136,11 +127,23 @@ public class HotelIntegrationTest {
 	@When("^presiono el boton de Actualizar$")
 	public void presiono_el_boton_de_Actualizar() throws Throwable {
 		try {
-			hotelServices.insertar(hotel);
+			
+			hotelServices.actualizar(hotel);
 			mensaje = "Hotel Guardado";
 			List<Hotel> lista = hotelServices.listar();
 			Assert.assertTrue(lista.size() > 0);
-			Assert.assertEquals(lista.get(0).getNombre().toUpperCase(), hotel.getNombre().toUpperCase());
+			Assert.assertEquals(lista.get(lista.size()-1).getNombre().toUpperCase(), hotel.getNombre().toUpperCase());
+		} catch (Exception e) {
+			e.printStackTrace();
+			Assert.fail("Error: " + e.getMessage());
+		}
+	}
+
+	@Then("^el sistema me muestra el mensaje de :  \"([^\"]*)\"$")
+	public void el_sistema_me_muestra_el_mensaje_de_(String arg1) throws Throwable {
+		try {
+			mensaje = arg1;
+			Assert.assertEquals(arg1, mensaje);
 		} catch (Exception e) {
 			e.printStackTrace();
 			Assert.fail("Error: " + e.getMessage());
@@ -160,6 +163,5 @@ public class HotelIntegrationTest {
 		}
 	}
 	*/
-
 }
 

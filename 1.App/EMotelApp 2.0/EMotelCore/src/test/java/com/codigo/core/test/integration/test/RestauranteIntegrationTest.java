@@ -13,7 +13,6 @@ import org.mockito.MockitoAnnotations;
 import com.codigo.core.entity.Distrito;
 import com.codigo.core.entity.Provincia;
 import com.codigo.core.entity.Restaurante;
-import com.codigo.core.entity.TipoHotel;
 import com.codigo.core.service.RestauranteServices;
 
 import cucumber.api.java.en.Given;
@@ -30,8 +29,8 @@ public class RestauranteIntegrationTest {
 	private String descripcionRestaurante = "";
 	private String ubicacionRestaurante = "";
 	private String nombreDistrito;
-	Distrito distrito;
-	Provincia provincia;
+	Distrito distrito = new Distrito();
+	Provincia provincia = new Provincia();
 	@Mock
 	private HttpServletResponse response;
 
@@ -86,7 +85,7 @@ public class RestauranteIntegrationTest {
 	}
 	
 	
-	@When("^presiono  el boton de Guardar$")
+	@When("^presiono  en el boton de Registrar$")
 	public void Restaurante_presiono_el_boton_de_Guardar() throws Throwable {
 		try {
 			restauranteServices.insertar(restaurante);
@@ -128,11 +127,11 @@ public class RestauranteIntegrationTest {
 		Assert.assertTrue(true);
 	}
 
-	@When("^presiono  el boton de Actualizar Restaurante$")
+	@When("^presiono  el boton de Actualizar$")
 	public void Restaurante_presiono_el_boton_de_Actualizar() throws Throwable {
 		try {
 			
-			restauranteServices.insertar(restaurante);
+			restauranteServices.actualizar(restaurante);
 			mensaje = "Restaurante Guardado";
 			List<Restaurante> lista = restauranteServices.listar();
 			Assert.assertTrue(lista.size() > 0);
@@ -143,10 +142,11 @@ public class RestauranteIntegrationTest {
 		}
 	}
 
-	@When("^luego  hago click en el enlace de eliminar de un registro$")
+	/*
+	@When("^luego  hago click en el enlace de Eliminar$")
 	public void Restaurante_luego_hago_click_en_el_enlace_de_eliminar_de_un_registro() throws Throwable {
 		try {
-			restauranteServices.eliminar(restaurante.getId());
+			restauranteServices.eliminar(restaurante);
 			mensaje = "Restaurante eliminado";
 			Assert.assertTrue(true);
 		} catch (Exception e) {
@@ -154,4 +154,5 @@ public class RestauranteIntegrationTest {
 			Assert.fail("Error: " + e.getMessage());
 		}
 	}
+	*/
 }

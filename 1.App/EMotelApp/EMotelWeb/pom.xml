@@ -7,7 +7,7 @@
 		<artifactId>EMotelApp</artifactId>
 		<version>1.0</version>
 	</parent>
-	<groupId>com.codigo.web</groupId>
+
 	<artifactId>EMotelWeb</artifactId>
 	<packaging>war</packaging>
 	<name>EMotelWeb</name>
@@ -17,10 +17,9 @@
 	</properties>
 	<dependencies>
 		<dependency>
-	  		<groupId>com.codigo.core</groupId>
+	  		<groupId>com.codigo.app</groupId>
 		    <artifactId>EMotelCore</artifactId>
 		    <version>1.0</version>
-		    <scope>compile</scope>
 	    </dependency>
   	</dependencies>
  

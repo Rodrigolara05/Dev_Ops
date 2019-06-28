@@ -21,7 +21,7 @@
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <h1 class="page-header" id="TituloRestauranteEditar" >Editar Restaurante</h1>
 
-          <form method="post" th:object="${restaurante}" action="/admin/restaurante/guardar" name="formulario">
+          <form method="post" th:object="${restaurante}" action="/EMotelWeb/admin/restaurante/guardar" name="formulario">
             <input type="hidden"  th:field="*{id}">
           	<div class="form-group">
               <label>Nombre</label>
@@ -30,7 +30,7 @@
             </div>
             <div class="form-group">
               <label>Precio</label>
-              <input id="RestaurantePrecio" th:field="*{precio}" type="number" class="form-control" step="any" name="precio"/ min=0.00>
+              <input id="RestaurantePrecio" th:field="*{precio}" type="number" class="form-control" step="any" name="precio" min=0.00/>
               <p class="text-danger" id = "pre"></p>
             </div>
             <div class="form-group">

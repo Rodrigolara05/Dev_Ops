@@ -7,11 +7,11 @@
 		<artifactId>EMotelApp</artifactId>
 		<version>1.0</version>
 	</parent>
-	
-	<groupId>com.codigo.core</groupId>
+
 	<artifactId>EMotelCore</artifactId>
 	<name>EMotelCore</name>
-	<version>1.0</version>
+	<packaging>jar</packaging>
+	
 	<dependencies>
 	 <dependency>
             <groupId>org.springframework.boot</groupId>

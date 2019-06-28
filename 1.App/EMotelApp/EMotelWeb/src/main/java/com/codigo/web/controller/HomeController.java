@@ -3,6 +3,7 @@ package com.codigo.web.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,17 +17,19 @@ import com.codigo.core.entity.Rol;
 import com.codigo.core.services.AdministradorService;
 
 @Controller
+@ComponentScan(basePackages = {"com.codigo.core.services"})
+@ComponentScan(basePackageClasses = {AdministradorService.class})
 public class HomeController {
 	@Autowired
 	AdministradorService adminserv;
 	
-	@RequestMapping(value="/", method = RequestMethod.GET )
+	@RequestMapping(value="/EMotelWeb", method = RequestMethod.GET )
 	public String index() {
 		
 		return "index.html";
 	}
 	
-	@RequestMapping(value="/usuario/registrar", method = RequestMethod.GET)
+	@RequestMapping(value="/EMotelWeb/usuario/registrar", method = RequestMethod.GET)
 	public String registrar(Model model) {
 		Administrador objAdministrador = new Administrador();
 		model.addAttribute("administrador", objAdministrador);
@@ -34,7 +37,7 @@ public class HomeController {
 		return "usuario_registrar.html";
 	}
 	
-	@RequestMapping(value="/usuario/guardar", method=RequestMethod.POST)
+	@RequestMapping(value="/EMotelWeb/usuario/guardar", method=RequestMethod.POST)
 	public String guardar(@ModelAttribute @Valid Administrador objAdministrador, 
 			BindingResult bindResult,
 			Model model, RedirectAttributes objRedir) 
@@ -49,11 +52,11 @@ public class HomeController {
 			}else {
 				objRedir.addFlashAttribute("error", "Ocurrió un error");			
 			}
-			return "redirect:/login";
+			return "redirect:/EMotelWeb/login";
 		
 	}
 	
-	@RequestMapping(value="/usuario/iniciar_sesion", method = RequestMethod.POST)
+	@RequestMapping(value="/EMotelWeb/usuario/iniciar_sesion", method = RequestMethod.POST)
 	public String iniciar_sesion(@ModelAttribute @Valid Administrador objAdministrador, 
 			BindingResult bindResult,
 			Model model, RedirectAttributes objRedir) {
@@ -61,14 +64,14 @@ public class HomeController {
 		
 		if(aux == null) {
 			objRedir.addFlashAttribute("error", "Correo o contraseña invalidos");			
-			return "redirect:/login";
+			return "redirect:/EMotelWeb/login";
 		}
 		else {
 			Rol rol = aux.getRol();
 			if(rol.getId()==1)
 				return "admin/dashboard.html";
 			else {
-				return "redirect:/hotel/listar/0";
+				return "redirect:/EMotelWeb/hotel/listar/0";
 			}
 		}
 	}

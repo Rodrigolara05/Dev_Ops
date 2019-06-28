@@ -11,7 +11,7 @@ import com.codigo.test.system.selenium.page.LoguinPage;
 import com.codigo.test.system.selenium.page.RestaurantePage;
 
 public class MantenimientoRestaurante {
-	private String urlInicial = "http://localhost:8080/";
+	private String urlInicial = "http://localhost:8080/EMotelWeb/";
 	private WebDriver webDriver = null;
 	private HomePage homePage;
 	private LoguinPage loguinPage;
@@ -27,7 +27,7 @@ public class MantenimientoRestaurante {
 		this.restaurantePage = new RestaurantePage(webDriver);
 	}
 	
-	@Test
+	@Test(priority = 0)
 	public void A_insertarRestaurante_FlujoBasico() throws Exception {
 		try {
 			String valorEsperado = "Restaurante guardado";
@@ -42,7 +42,7 @@ public class MantenimientoRestaurante {
 		}
 	}
 	
-	@Test(dependsOnMethods = {"A_insertarRestaurante_FlujoBasico"})
+	@Test(dependsOnMethods = {"A_insertarRestaurante_FlujoBasico"}, priority = 1)
 	public void A_insertarRestaurante_FlujoAlternativo() throws Exception {
 		try {
 			String valorEsperado = "Registrar Restaurante";
@@ -55,7 +55,7 @@ public class MantenimientoRestaurante {
 		}
 	}
 	
-	@Test
+	@Test(priority = 2)
 	public void B_mostrarRestaurante_FlujoBasico() throws Exception {
 		try {
 			String valorEsperado = "Listado de Restaurantes";
@@ -68,7 +68,7 @@ public class MantenimientoRestaurante {
 		}
 	}
 	
-	@Test
+	@Test(priority = 3)
 	public void C_actualizarRestaurante_FlujoBasico() throws Exception {
 		try {
 			String valorEsperado = "Restaurante guardado";
@@ -81,7 +81,7 @@ public class MantenimientoRestaurante {
 		}
 	}
 	
-	@Test(dependsOnMethods = {"C_actualizarRestaurante_FlujoBasico"})
+	@Test(dependsOnMethods = {"C_actualizarRestaurante_FlujoBasico"}, priority = 4)
 	public void C_actualizarRestaurante_FlujoAlternativo() throws Exception {
 		try {
 			String valorEsperado = "Editar Restaurante";
@@ -94,7 +94,7 @@ public class MantenimientoRestaurante {
 		}
 	}
 	
-	@Test
+	@Test(priority = 5)
 	public void D_eliminarRestaurante_FlujoBasico() throws Exception {
 		try {
 			String valorEsperado = "Restaurante eliminado";

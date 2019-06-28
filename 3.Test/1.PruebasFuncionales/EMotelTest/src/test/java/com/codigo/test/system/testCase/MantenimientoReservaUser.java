@@ -10,7 +10,7 @@ import com.codigo.test.system.selenium.page.ReservaPage;
 import com.codigo.test.system.selenium.page.UserPage;
 
 public class MantenimientoReservaUser {
-	private String urlInicial = "http://localhost:8080/";
+	private String urlInicial = "http://localhost:8080/EMotelWeb/";
 	private WebDriver webDriver = null;
 	private HomePage homePage;
 	private LoguinPage loguinPage;

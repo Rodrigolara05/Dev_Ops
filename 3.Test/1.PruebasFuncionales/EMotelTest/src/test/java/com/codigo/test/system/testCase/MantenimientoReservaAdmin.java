@@ -10,7 +10,7 @@ import com.codigo.test.system.selenium.page.LoguinPage;
 import com.codigo.test.system.selenium.page.ReservaPage;
 
 public class MantenimientoReservaAdmin {
-	private String urlInicial = "http://localhost:8080/";
+	private String urlInicial = "http://localhost:8080/EMotelWeb/";
 	private WebDriver webDriver = null;
 	private HomePage homePage;
 	private LoguinPage loguinPage;
@@ -26,7 +26,7 @@ public class MantenimientoReservaAdmin {
 		this.reservaPage = new ReservaPage(webDriver);
 	}
 	
-	@Test
+	@Test(priority = 0)
 	public void A_mostrarReserva_FlujoBasico() throws Exception {
 		try {
 			String valorEsperado = "Listado de Reservas";

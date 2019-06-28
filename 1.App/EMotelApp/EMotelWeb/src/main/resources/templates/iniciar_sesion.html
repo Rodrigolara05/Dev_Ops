@@ -15,9 +15,9 @@
 	<nav class="navbar navbar-fixed-top navbar-inverse">
       <div class="container text-left">
         <div>
-          <a class="navbar-brand text-left" href="/">EMotel</a>
-		  <a class="navbar-brand" href="/login">Iniciar Sesion</a>
-		  <a class="navbar-brand" href="/usuario/registrar">Registrarse</a>
+          <a class="navbar-brand text-left" href="/EMotelWeb">EMotel</a>
+		  <a class="navbar-brand" href="/EMotelWeb/login">Iniciar Sesion</a>
+		  <a class="navbar-brand" href="/EMotelWeb/usuario/registrar">Registrarse</a>
         </div>
         
       </div>
@@ -27,7 +27,7 @@
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
-				<form name="formulario" class="login100-form validate-form" method="post" th:object="${administrador}" action="/usuario/iniciar_sesion">
+				<form name="formulario" class="login100-form validate-form" method="post" th:object="${administrador}" action="/EMotelWeb/usuario/iniciar_sesion">
 					<span class="login100-form-title p-b-34">
 						Inicio de Sesion
 					</span>
@@ -70,7 +70,7 @@
 					</div>
 
 					<div class="w-full text-center">
-						<a href="/usuario/registrar" class="txt3">
+						<a href="/EMotelWeb/usuario/registrar" class="txt3">
 							Registrate
 						</a>
 					</div>

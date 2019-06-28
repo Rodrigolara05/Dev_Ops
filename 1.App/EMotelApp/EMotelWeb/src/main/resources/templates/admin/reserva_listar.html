@@ -28,7 +28,7 @@
           	<p th:text="${error}"></p>
           </div> 
            
-         <form method="post" th:object="${reserva}" action="/admin/reserva/hotel_restaurante/">    
+         <form method="post" th:object="${reserva}" action="/EMotelWeb/admin/reserva/hotel_restaurante/">    
           
            <div class="form-group">
              <label for="">Hotel</label>
@@ -73,7 +73,7 @@
 					<td th:text="${v.costototal}"></td>
 					<td>
 
-						<a th:href="@{'/reserva/eliminar/' + ${v.id}}">Eliminar</a>
+						<a th:href="@{'/EMotelWeb/reserva/eliminar/' + ${v.id}}">Eliminar</a>
 					</td>
 				</tr>
 			</tbody>

@@ -19,20 +19,20 @@ public class TipoHotelController {
 	@Autowired
 	TipoHotelService tipohotelserv;
 	
-	@RequestMapping(value="/admin/tipohotel/listar", method= RequestMethod.GET)
+	@RequestMapping(value="/EMotelWeb/admin/tipohotel/listar", method= RequestMethod.GET)
 	public String listar(Model model) {
 		model.addAttribute("listado", tipohotelserv.listar());
 		return "admin/tipohotel_listar.html";
 	}
 	
-	@RequestMapping(value="/admin/tipohotel/registrar", method = RequestMethod.GET)
+	@RequestMapping(value="/EMotelWeb/admin/tipohotel/registrar", method = RequestMethod.GET)
 	public String registrar(Model model) {
 		TipoHotel objTipoHotel = new TipoHotel();
 		model.addAttribute("tipohotel", objTipoHotel);
 		return "admin/tipohotel_registrar.html";
 	}
 	
-	@RequestMapping(value="/admin/tipohotel/guardar", method=RequestMethod.POST)
+	@RequestMapping(value="/EMotelWeb/admin/tipohotel/guardar", method=RequestMethod.POST)
 	public String guardar(@ModelAttribute @Valid TipoHotel objTipoHotel, 
 			BindingResult bindResult,
 			Model model, RedirectAttributes objRedir) 
@@ -43,10 +43,10 @@ public class TipoHotelController {
 			}else {
 				objRedir.addFlashAttribute("error", "Ocurrió un error");			
 			}
-			return "redirect:/admin/tipohotel/listar";
+			return "redirect:/EMotelWeb/admin/tipohotel/listar";
 		
 	}
-	@RequestMapping(value="/admin/tipohotel/eliminar/{id}", method = RequestMethod.GET)
+	@RequestMapping(value="/EMotelWeb/admin/tipohotel/eliminar/{id}", method = RequestMethod.GET)
 	public String eliminar(@PathVariable int id, RedirectAttributes objRedir) {
 		boolean flag = tipohotelserv.eliminar(id);
 		
@@ -56,16 +56,16 @@ public class TipoHotelController {
 			objRedir.addFlashAttribute("error", "Ocurrió un error");			
 		}
 		
-		return "redirect:/admin/tipohotel/listar";
+		return "redirect:/EMotelWeb/admin/tipohotel/listar";
 	}
 	
-	@RequestMapping(value="/admin/tipohotel/editar/{id}", method = RequestMethod.GET)
+	@RequestMapping(value="/EMotelWeb/admin/tipohotel/editar/{id}", method = RequestMethod.GET)
 	public String editar(@PathVariable int id, Model model, RedirectAttributes objRedir) {
 		TipoHotel objHotel = tipohotelserv.cargarHotel(id);
 		
 		if(objHotel == null) {
 			objRedir.addFlashAttribute("error", "Tipo Hotel no existe");
-			return "redirect:/admin/tipohotel/listar";
+			return "redirect:/EMotelWeb/admin/tipohotel/listar";
 		}else {
 			model.addAttribute("tipohotel", objHotel);
 			return "admin/tipohotel_editar.html";

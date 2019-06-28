@@ -12,7 +12,7 @@ import com.codigo.test.system.selenium.page.LoguinPage;
 
 
 public class MantenimientoHotel {
-	private String urlInicial = "http://localhost:8080/";
+	private String urlInicial = "http://localhost:8080/EMotelWeb/";
 	private WebDriver webDriver = null;
 	private HomePage homePage;
 	private LoguinPage loguinPage;
@@ -28,7 +28,7 @@ public class MantenimientoHotel {
 		this.hotelPage = new HotelPage(webDriver);
 	}
 	
-	@Test
+	@Test(priority = 0)
 	public void A_insertarHotel_FlujoBasico() throws Exception {
 		try {
 			String valorEsperado = "Hotel guardado";
@@ -43,7 +43,7 @@ public class MantenimientoHotel {
 		}
 	}
 	
-	@Test(dependsOnMethods = {"A_insertarHotel_FlujoBasico"})
+	@Test(dependsOnMethods = {"A_insertarHotel_FlujoBasico"}, priority = 1)
 	public void A_insertarHotel_FlujoAlternativo() throws Exception {
 		try {
 			String valorEsperado = "Registrar Hotel";
@@ -58,7 +58,7 @@ public class MantenimientoHotel {
 		}
 	}
 	
-	@Test
+	@Test(priority = 2)
 	public void B_mostrarHotel_FlujoBasico() throws Exception {
 		try {
 			String valorEsperado = "Listado de hoteles";
@@ -71,7 +71,7 @@ public class MantenimientoHotel {
 		}
 	}
 	
-	@Test
+	@Test(priority = 3)
 	public void C_actualizarHotel_FlujoBasico() throws Exception {
 		try {
 			String valorEsperado = "Hotel guardado";
@@ -84,7 +84,7 @@ public class MantenimientoHotel {
 		}
 	}
 	
-	@Test(dependsOnMethods = {"C_actualizarHotel_FlujoBasico"})
+	@Test(dependsOnMethods = {"C_actualizarHotel_FlujoBasico"}, priority = 4)
 	public void C_actualizarHotel_FlujoAlternativo() throws Exception {
 		try {
 			String valorEsperado = "Editar Hotel";
@@ -97,7 +97,7 @@ public class MantenimientoHotel {
 		}
 	}
 	
-	@Test
+	@Test(priority = 5)
 	public void D_eliminarHotel_FlujoBasico() throws Exception {
 		try {
 			String valorEsperado = "Hotel eliminado";

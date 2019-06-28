@@ -19,12 +19,12 @@ public class AdminController {
 	@Autowired
 	AdministradorService adminserv;
 	
-	@RequestMapping(value="/admin/dashboard", method=RequestMethod.GET)
+	@RequestMapping(value="/EMotelWeb/admin/dashboard", method=RequestMethod.GET)
 	public String dashboard() {
 		
 		return "admin/dashboard.html";
 	}
-	@RequestMapping(value="/login", method=RequestMethod.GET)
+	@RequestMapping(value="/EMotelWeb/login", method=RequestMethod.GET)
 	public String login(Model model) {
 		Administrador objAdministrador=new Administrador();
 		model.addAttribute("administrador",objAdministrador);

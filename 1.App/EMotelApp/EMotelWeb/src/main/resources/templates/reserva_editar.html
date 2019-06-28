@@ -21,13 +21,13 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/">EMotel</a>
+          <a class="navbar-brand" href="//EMotelWeb">EMotel</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-          <li class="active"><a href="/">Inicio</a></li>
-            <li><a href="/login">Iniciar Sesion</a></li>
-            <li><a href="/usuario/registrar">Registrarse</a></li>
+          <li class="active"><a href="/EMotelWeb">Inicio</a></li>
+            <li><a href="/EMotelWeb/login">Iniciar Sesion</a></li>
+            <li><a href="/EMotelWebusuario/registrar">Registrarse</a></li>
           </ul>
         </div><!-- /.nav-collapse -->
       </div><!-- /.container -->
@@ -44,7 +44,7 @@
           
        <h1 class="page-header" id = "TituloReservaEditar">Editar Reserva</h1>
 
-          <form  method="post" th:object="${reserva}" action="/reserva/guardar">
+          <form  method="post" th:object="${reserva}" action="/EMotelWeb/reserva/guardar">
           		<input th:field="*{id}" hidden="true">
 	          <div style="position: relative;">
 	            <div class="form-group">

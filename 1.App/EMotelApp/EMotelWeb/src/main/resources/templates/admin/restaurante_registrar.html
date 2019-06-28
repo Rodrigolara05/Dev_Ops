@@ -21,7 +21,7 @@
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <h1 class="page-header" id="TituloRestauranteRegistrar" >Registrar Restaurante</h1>
 
-          <form method="post" th:object="${restaurante}" action="/admin/restaurante/guardar" name="formulario">
+          <form method="post" th:object="${restaurante}" action="/EMotelWeb/admin/restaurante/guardar" name="formulario">
           	<div class="form-group">
               <label>Nombre</label>
               <input id="RestauranteNombre" th:field="*{nombre}" type="text" class="form-control" placeholder="nombre" name="nombre" />

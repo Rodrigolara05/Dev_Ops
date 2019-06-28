@@ -1,7 +1,6 @@
 package com.codigo.web.controller;
 
 
-import java.sql.Date;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -34,7 +33,7 @@ public class ReservaController {
 	@Autowired
 	AdministradorService admiserv;
 	
-	@RequestMapping(value="/admin/reserva/listar", method= RequestMethod.GET)
+	@RequestMapping(value="/EMotelWeb/admin/reserva/listar", method= RequestMethod.GET)
 	public String listar(Model model) {
 		Reserva objReserva = new Reserva();
 		model.addAttribute("reserva", objReserva);
@@ -44,7 +43,7 @@ public class ReservaController {
 		return "admin/reserva_listar.html";
 	}
 	
-	@RequestMapping(value="/admin/reserva/hotel_restaurante/", method = RequestMethod.POST)
+	@RequestMapping(value="/EMotelWeb/admin/reserva/hotel_restaurante/", method = RequestMethod.POST)
 	public String listar_por_parametros(@ModelAttribute Reserva reserva ,Model model) {
 		model.addAttribute("listado1", hotelserv.listar());
 		model.addAttribute("listado2", restauranteserv.listar());
@@ -58,12 +57,12 @@ public class ReservaController {
 	
 	
 	
-	@RequestMapping(value="/reserva/listar", method= RequestMethod.GET)
+	@RequestMapping(value="/EMotelWeb/reserva/listar", method= RequestMethod.GET)
 	public String listar2(Model model) {
 		model.addAttribute("listado", reservaserv.listar());
 		return "reserva_lista.html";
 	}
-	@RequestMapping(value="/reserva/registrar", method= RequestMethod.GET)
+	@RequestMapping(value="/EMotelWeb/reserva/registrar", method= RequestMethod.GET)
 	public String registrar(Model model) {
 		Reserva obj= new Reserva();
 		model.addAttribute("reserva", obj);
@@ -72,7 +71,7 @@ public class ReservaController {
 		model.addAttribute("listado3", admiserv.listar());
 		return "reserva_registrar.html";
 	}
-	@RequestMapping(value="/reserva/guardar", method=RequestMethod.POST)
+	@RequestMapping(value="/EMotelWeb/reserva/guardar", method=RequestMethod.POST)
 	public String guardar(@ModelAttribute @Valid Reserva obj, 
 			BindingResult bindResult,
 			Model model, RedirectAttributes objRedir) 
@@ -87,10 +86,10 @@ public class ReservaController {
 			}else {
 				objRedir.addFlashAttribute("error", "Ocurrió un error");			
 			}
-			return "redirect:/reserva/listar";
+			return "redirect:/EMotelWeb/reserva/listar";
 	}
 
-	@RequestMapping(value="/reserva/eliminar/{id}", method = RequestMethod.GET)
+	@RequestMapping(value="/EMotelWeb/reserva/eliminar/{id}", method = RequestMethod.GET)
 	public String eliminar(@PathVariable int id, RedirectAttributes objRedir) {
 		boolean flag = reservaserv.eliminar(id);
 		
@@ -100,16 +99,16 @@ public class ReservaController {
 			objRedir.addFlashAttribute("error", "Ocurrió un error");			
 		}
 		
-		return "redirect:/reserva/listar";
+		return "redirect:/EMotelWeb/reserva/listar";
 	}
 	
-	@RequestMapping(value="/reserva/editar/{id}", method = RequestMethod.GET)
+	@RequestMapping(value="/EMotelWeb/reserva/editar/{id}", method = RequestMethod.GET)
 	public String editar(@PathVariable int id, Model model, RedirectAttributes objRedir) {
 		Reserva obj = reservaserv.cargarReserva(id);
 		
 		if(obj == null) {
 			objRedir.addFlashAttribute("error", "reserva no existe");
-			return "redirect:/reserva/listar";
+			return "redirect:/EMotelWeb/reserva/listar";
 		}else {
 			model.addAttribute("reserva", obj);
 			model.addAttribute("listado1",restauranteserv.listar() );
